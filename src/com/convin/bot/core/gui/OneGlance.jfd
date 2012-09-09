@@ -1,0 +1,153 @@
+JFDML JFormDesigner: "5.1.0.0.51" Java: "1.6.0_29" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp btnShow:::p:90:p, space :p:30:p, comp btnSelectScript:::p::p, space :::p, comp btnStart:::p::p, space :::p, comp btnStop:::p::p, space :::p, comp btnPause:::p::p, space s:::p, comp btnBlockHuman:::p::p, space ::92:x, par l {comp btnShutdown::t:p::p, comp btnSettings::t:p::p}}, seq {par l {par t:l::p {seq l {comp lblScript:::p::p, space :::x, comp script:::p:97:p}, seq l {comp lblAccount:::p::p, space :p:18:p, comp account:::p:97:p}}, seq l {comp lbltimeRunning:::p::p, space u:::p, comp timeRunning:::p:87:p}}, space :p:41:p, par l {seq {comp lblStatus:::p::p, space s:::p, comp status:::p:138:p, space ::351:x, comp btnLog:::p::p}, seq {par t {seq {comp lblUserSpecified1:::p::p, space :18:18:p, comp scriptSpecific1:::p:138:p}, seq {comp lblUserSpecified2:::p::p, space s:::p, comp scriptSpecific2:::p:138:p}}, space :0:377:x}}}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp btnShow::b:p::p, par b:b {comp btnStart::b:p::p, comp btnSelectScript::l:::x, comp btnStop::b:p::p, comp btnPause::b:::x, comp btnBlockHuman::b:p::p}}, space :p:18:p, par t {par b {comp lblScript::b:p::p, comp script::b:p::p}, par b {comp lblStatus::b:p::p, comp status::b:p::p}}, space :::p, par l {seq l {par b {comp account::b:p::p, comp lblAccount::b:p::p}, space :::p, par b {comp lbltimeRunning::b:p::p, comp timeRunning::b:p::p}}, seq l {par l {comp lblUserSpecified1::l:p::p, comp scriptSpecific1::l:p::p}, space :::p, par b {comp scriptSpecific2::b:p::p, comp lblUserSpecified2::b:p::p}}}, space :p:11:p}, seq l {comp btnShutdown:::p::p, space :::p, comp btnSettings:::p::p, space :::p, comp btnLog:::p::p, space :0:0:x}}"
+		} ) {
+			name: "this"
+			"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			"background": new java.awt.Color( 228, 219, 198, 255 )
+			"border": new javax.swing.border.MatteBorder( 0, 0, 1, 0, sfield java.awt.Color gray )
+			"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnSelectScript"
+				"text": "Select script"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Eject24.png" )
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				"background": &SwingColor0 new com.jformdesigner.model.SwingColor( "Button.background" )
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSelectScriptActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnStart"
+				"text": "Start"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Play24.png" )
+				"font": &Font0 new java.awt.Font( "Segoe UI", 0, 14 )
+				"background": #SwingColor0
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnStartActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnPause"
+				"text": "Pause"
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Pause24.png" )
+				"background": #SwingColor0
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnPauseActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "btnBlockHuman"
+				"text": "Block human"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\User-green24.png" )
+				"selectedIcon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\User-red24.png" )
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				"background": #SwingColor0
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBlockHumanActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "btnShow"
+				"text": "Show"
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+				"background": #SwingColor0
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Eye24.png" )
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnShowActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "btnShutdown"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\power_24.png" )
+				"toolTipText": "Shutdown this instance"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "shutdownMouseClicked", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAccount"
+				"text": "Account:"
+				"font": &Font1 new java.awt.Font( "Segoe UI", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblScript"
+				"text": "Script: "
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbltimeRunning"
+				"text": "Running: "
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "account"
+				"text": "0Test"
+				"font": &Font2 new java.awt.Font( "Segoe UI Light", 0, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "timeRunning"
+				"text": "00:00:00"
+				"font": new java.awt.Font( "Segoe UI Light", 0, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "script"
+				"text": "TestScript"
+				"font": #Font2
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnStop"
+				"text": "Stop"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Stop24.png" )
+				"font": #Font0
+				"background": #SwingColor0
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnStopActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "btnSettings"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\settings-24.png" )
+				"toolTipText": "View settings"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "settingsMouseClicked", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "btnLog"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\page-24.png" )
+				"toolTipText": "View log"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "logMouseClicked", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblStatus"
+				"text": "Status: "
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "status"
+				"text": "Not yet implemented"
+				"font": #Font2
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblUserSpecified1"
+				"text": "User1: "
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "scriptSpecific1"
+				"text": "Script Specified"
+				"font": #Font2
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblUserSpecified2"
+				"text": "User2: "
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "scriptSpecific2"
+				"text": "Script Specified"
+				"font": #Font2
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 805, 150 )
+		} )
+	}
+}

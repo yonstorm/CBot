@@ -1,0 +1,70 @@
+JFDML JFormDesigner: "5.1.0.0.51" Java: "1.6.0_29" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp dialogPane:::p::p}"
+			"$verticalGroup": "par l {comp dialogPane:::p::p}"
+		} ) {
+			name: "this"
+			"$locationPolicy": 1
+			"alwaysOnTop": true
+			"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			"title": "Settings"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp contentPanel:::p::p, comp buttonBar:::p:460:p}"
+				"$verticalGroup": "par l {seq {comp contentPanel:::p::p, space :0:0:p, comp buttonBar:::p::p}}"
+			} ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {comp cBoxEnablePaint:::p:131:p, comp cBoxOldComp::l:p:161:p}, space ::293:x}}"
+					"$verticalGroup": "par l {seq l {space :p:21:p, comp cBoxEnablePaint:::p::p, space u:::p, comp cBoxOldComp:::p::p, space ::242:x}}"
+				} ) {
+					name: "contentPanel"
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "cBoxEnablePaint"
+						"text": "Enable paint"
+						"toolTipText": "Enable or disable game image painting"
+						"font": &Font0 new java.awt.Font( "Segoe UI", 0, 14 )
+						"selected": true
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "cBoxOldComp"
+						"text": "I have a old computer"
+						"toolTipText": "Enable or disable performance boost"
+						"font": #Font0
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0:1.0, 80, 80"
+					"$rowSpecs": "0"
+					"$hGap": 5
+					"$vGap": 5
+				} ) {
+					name: "buttonBar"
+					"border": new javax.swing.border.EmptyBorder( 12, 0, 0, 0 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "okButton"
+						"text": "OK"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 0
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "cancelButton"
+						"text": "Cancel"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 2
+						"gridy": 0
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 500, 410 )
+		} )
+	}
+}

@@ -1,0 +1,28 @@
+JFDML JFormDesigner: "5.1.0.0.51" Java: "1.6.0_29" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp scrollPane1::t::668:x}"
+			"$verticalGroup": "par l {seq l {comp scrollPane1:::p:242:p, space :0:24:x}}"
+		} ) {
+			name: "this"
+			"title": "ConvinBot - Log"
+			"font": new java.awt.Font( "Segoe UI", 0, 12 )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "tAreaLog"
+					"editable": false
+					"font": new java.awt.Font( "Segoe UI", 0, 13 )
+					"lineWrap": true
+					"autoscrolls": true
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 684, 302 )
+		} )
+	}
+}
