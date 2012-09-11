@@ -103,4 +103,55 @@ public class Inventory {
         return matching.toArray(new GLItem[matching.size()]);
     }
 
+    /**
+     * Searches for items in inventory by specified filter.
+     *
+     * @param filter the filter which conditions have to be accepted
+     * @return Array of GLItems that were found - if none is found returns an empty array
+     */
+    public static GLItem[] findItems(Filter<GLItem> filter) {
+        ArrayList<GLItem> matching = new ArrayList<GLItem>();
+        for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
+            if (filter.accept(t)) {
+                matching.add(t);
+            }
+        }
+        return matching.toArray(new GLItem[matching.size()]);
+    }
+
+
+    /**
+     * Searches for an item in inventory by specified TextureID ( thanks to iJava )
+     *
+     * @param textureID textureID to search for
+     * @return A valid GLItem - if no item is found returns a invalid GLItem
+     */
+    public static GLItem findItemByTextureID(final int textureID) {
+        for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
+            if (t.getTextureID() == textureID) {
+                return t;
+            }
+        }
+        return new GLItem();
+    }
+
+    /**
+     * Searches for items in inventory by specified TextureIDs ( thanks to iJava )
+     *
+     * @param textureID textureIDs to search for
+     * @return An array of GLItems, if no items are found returns an empty array
+     */
+    public static GLItem[] findItemsByTextureID(final int... textureID) {
+        ArrayList<GLItem> matching = new ArrayList<GLItem>();
+        for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
+            for (int tid : textureID) {
+                if (t.getTextureID() == tid) {
+                    matching.add(t);
+                }
+            }
+        }
+        return matching.toArray(new GLItem[matching.size()]);
+    }
+
+
 }

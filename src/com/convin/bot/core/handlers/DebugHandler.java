@@ -20,10 +20,13 @@ public class DebugHandler {
 
     public void paintDebug(Graphics g) {
         Mouse.paint(g);
-        if (ac.getSettings().shouldDebugObjects())
-            if (ac.getScriptHandler().getCurrentScript() instanceof Painting) {
-                ((Painting) ac.getScript()).paint(g);
+        if (ac.getSettings().shouldDebugObjects()) {
+            if (ac.getScript() != null) {
+                if (ac.getScript().isRunning() && ac.getScriptHandler().getCurrentScript() instanceof Painting) {
+                    ((Painting) ac.getScript()).paint(g);
+                }
             }
+        }
         if (ac.getRandomHandler().getCurrentActiveRandomEventSolver() instanceof Painting) {
             ((Painting) ac.getRandomHandler().getCurrentActiveRandomEventSolver()).paint(g);
         }

@@ -99,4 +99,9 @@ public class GLTexture extends Entity {
     public boolean isValid() {
         return isValid;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.id;
+    }
 }

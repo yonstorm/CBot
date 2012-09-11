@@ -105,7 +105,7 @@ public class OneGlance extends JPanel {
         timeUpdater.stopped = true;
         this.startTime = 0;
         this.timeRunning.setText("00:00:00");
-
+        this.timeRunning.revalidate();
     }
 
     class TimeUpdater implements Runnable {

@@ -1,6 +1,8 @@
 package com.convin.bot.core.components;
 
 import com.convin.bot.api.input.Mouse;
+import com.convin.bot.api.script.MouseActions;
+import com.convin.bot.api.script.Script;
 import com.convin.bot.core.bot.AccessorMethods;
 import com.convin.bot.utils.settings.Settings;
 
@@ -23,6 +25,7 @@ import static java.awt.image.AffineTransformOp.TYPE_NEAREST_NEIGHBOR;
 public class ImagePanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
     private static final Dimension PREFERRED_SIZE = new Dimension(Settings.APPLET_WIDTH, Settings.APPLET_HEIGHT);
     private BufferedImage image;
+    private BufferedImage paintImage;
     private BufferedImage offscreenImage;
     private final AccessorMethods ac;
     private final byte pixels[];
@@ -64,7 +67,7 @@ public class ImagePanel extends JPanel implements MouseListener, MouseMotionList
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (image != null) {
-            g.drawImage(image, 0, 0, Color.DARK_GRAY, null);
+            g.drawImage(image, 0, 0, Color.BLACK, null);
         }
     }
 
@@ -74,14 +77,13 @@ public class ImagePanel extends JPanel implements MouseListener, MouseMotionList
     }
 
     public void updateImage() {
-        //image.flush();
-
         updateGameImage(pixels); //todo: rename method
         offscreenImage.getRaster().setDataElements(0, 0, Settings.APPLET_WIDTH, Settings.APPLET_HEIGHT, pixels);
 
         AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
         tx.translate(0, -offscreenImage.getHeight(null));
         AffineTransformOp op = new AffineTransformOp(tx, TYPE_NEAREST_NEIGHBOR);
+        image.getGraphics().clearRect(0, 0, Settings.APPLET_WIDTH, Settings.APPLET_HEIGHT);
         image = op.filter(offscreenImage, null);
 
         Graphics g = image.getGraphics();
@@ -118,15 +120,36 @@ public class ImagePanel extends JPanel implements MouseListener, MouseMotionList
     @Override
     public void mouseClicked(MouseEvent e) {
         Mouse.click(e.getPoint(), e.getButton());
+
+        if (ac.getScript() != null) {
+            Script curScript = ac.getScript();
+            if (curScript.isRunning() && curScript instanceof MouseActions) {
+                MouseActions mouse = (MouseActions) curScript;
+                mouse.mouseClicked(e.getPoint(), e.getButton());
+            }
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (ac.getScript() != null) {
+            Script curScript = ac.getScript();
+            if (curScript.isRunning() && curScript instanceof MouseActions) {
+                MouseActions mouse = (MouseActions) curScript;
+                mouse.mousePressed(e.getPoint(), e.getButton());
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (ac.getScript() != null) {
+            Script curScript = ac.getScript();
+            if (curScript.isRunning() && curScript instanceof MouseActions) {
+                MouseActions mouse = (MouseActions) curScript;
+                mouse.mouseReleased(e.getPoint(), e.getButton());
+            }
+        }
 
     }
 
@@ -146,16 +169,28 @@ public class ImagePanel extends JPanel implements MouseListener, MouseMotionList
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        //Mouse.drag(e.getPoint(), Mouse.LEFT_BUTTON);
         Component target = ac.getMouseListener();
         target.dispatchEvent(e);
+        if (ac.getScript() != null) {
+            Script curScript = ac.getScript();
+            if (curScript.isRunning() && curScript instanceof MouseActions) {
+                MouseActions mouse = (MouseActions) curScript;
+                mouse.mouseDragged(e.getPoint(), e.getButton());
+            }
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        //Mouse.move(e.getPoint());
         Component target = ac.getMouseListener();
         target.dispatchEvent(e);
+        if (ac.getScript() != null) {
+            Script curScript = ac.getScript();
+            if (curScript.isRunning() && curScript instanceof MouseActions) {
+                MouseActions mouse = (MouseActions) curScript;
+                mouse.mouseMoved(e.getPoint());
+            }
+        }
     }
 
     public void setRefreshing(boolean refreshing) {

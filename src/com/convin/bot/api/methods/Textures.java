@@ -33,6 +33,22 @@ public class Textures {
     }
 
     /**
+     * Searches for Textures in opengl cache by specified filter.
+     *
+     * @param filter Specifies the filter which conditions have to be accepted
+     * @return Array of Textures, if none are found returns a empty array
+     */
+    public static GLTexture[] findAll(Filter<GLTexture> filter) {
+        ArrayList<GLTexture> matching = new ArrayList<GLTexture>();
+        for (GLTexture t : OpenglObjectUpdater.getTextureCache()) {
+            if (filter.accept(t)) {
+                matching.add(t);
+            }
+        }
+        return matching.toArray(new GLTexture[matching.size()]);
+    }
+
+    /**
      * Checks if texture is present by specified ids.
      *
      * @param ids Texture ids to check against
@@ -64,5 +80,21 @@ public class Textures {
             }
         }
         return texture;
+    }
+
+    /**
+     * Searches for a GLTexture in opengl cache by filter
+     *
+     * @param filter Specifies the filter which conditions have to be accepted
+     * @return A GLTexure if one is found that is accepted by the filter else returns a invalid GLTexture
+     */
+
+    public static GLTexture find(Filter<GLTexture> filter) {
+        for (GLTexture t : OpenglObjectUpdater.getTextureCache()) {
+            if (filter.accept(t)) {
+                return t;
+            }
+        }
+        return new GLTexture();
     }
 }

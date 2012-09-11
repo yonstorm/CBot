@@ -81,7 +81,7 @@ public final class Models {
     }
 
     /**
-     * Searches for Models in opengl cache by specified ids.
+     * Searches for Models in opengl cache by specified filter.
      *
      * @param filter Specifies the filter which conditions have to be accepted
      * @return Array of Models that were found by ids specified if none is found returns 0 length array
