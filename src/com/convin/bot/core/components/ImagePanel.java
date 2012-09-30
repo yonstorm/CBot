@@ -24,11 +24,12 @@ import static java.awt.image.AffineTransformOp.TYPE_NEAREST_NEIGHBOR;
  */
 public class ImagePanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
     private static final Dimension PREFERRED_SIZE = new Dimension(Settings.APPLET_WIDTH, Settings.APPLET_HEIGHT);
-    private BufferedImage image;
+    private volatile BufferedImage image;
     private BufferedImage paintImage;
     private BufferedImage offscreenImage;
     private final AccessorMethods ac;
     private final byte pixels[];
+    private final byte pixelsOff[];
     private boolean refreshing;
 
 
@@ -39,6 +40,7 @@ public class ImagePanel extends JPanel implements MouseListener, MouseMotionList
         this.ac = ac;
         setup();
         pixels = new byte[4 * 765 * 553 + 1];
+        pixelsOff = new byte[4 * 765 * 553 + 1];
         this.setDoubleBuffered(true);
         //this.setOpaque(false);
         this.setVisible(true);
@@ -96,7 +98,16 @@ public class ImagePanel extends JPanel implements MouseListener, MouseMotionList
     }
 
     public BufferedImage getImage() {
-        return image;
+        updateGameImage(pixelsOff);
+        BufferedImage img = new BufferedImage(Settings.APPLET_WIDTH, Settings.APPLET_HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
+        img.getRaster().setDataElements(0, 0, Settings.APPLET_WIDTH, Settings.APPLET_HEIGHT, pixelsOff);
+
+        AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
+        tx.translate(0, -img.getHeight(null));
+        AffineTransformOp op = new AffineTransformOp(tx, TYPE_NEAREST_NEIGHBOR);
+        img = op.filter(img, null);
+
+        return img;
     }
 
     @Override

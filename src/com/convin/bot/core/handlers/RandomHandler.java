@@ -5,7 +5,6 @@ import com.convin.bot.api.common.Time;
 import com.convin.bot.api.script.RandomEventSolver;
 import com.convin.bot.core.bot.AccessorMethods;
 import com.convin.bot.core.io.RandomLoader;
-import org.apache.log4j.Priority;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class RandomHandler implements Runnable {
     public void run() {
         shouldRun = true;
         if (randomEventSolvers.isEmpty()) {
-            Logging.log(Priority.ERROR, "No randomEventSolvers loaded! Reason: None found");
+            Logging.log(Logging.LogLevel.INFO, "No randomEventSolvers loaded! Reason: None found");
             shouldRun = false;
         }
 
@@ -36,7 +35,7 @@ public class RandomHandler implements Runnable {
             for (RandomEventSolver r : randomEventSolvers) {
                 if (r.isActive()) {
                     currentActiveRandomEventSolver = r;
-                    Logging.log(Priority.INFO, "Antirandom activated - " + r.getName());
+                    Logging.log(Logging.LogLevel.INFO, "Antirandom activated - " + r.getName());
                     if (r.canBeSolved()) {
                         ac.getScript().pause(true);
                         r.setup();
@@ -46,7 +45,7 @@ public class RandomHandler implements Runnable {
                         }
                         ac.getScript().pause(false);
                     } else {
-                        Logging.log(Priority.WARN, "Random event " + r.getName() + " cannot be solved.");
+                        Logging.log(Logging.LogLevel.ERROR, "Random event " + r.getName() + " cannot be solved.");
                         ac.getScript().stop();
                         //todo implement logout if random cannot be solved.
                     }
@@ -58,13 +57,14 @@ public class RandomHandler implements Runnable {
     }
 
     public void start(String threadName) {
+        Logging.log(Logging.LogLevel.INFO, "Starting RandomEvent handler");
         randomEventSolvers = RandomLoader.loadRandoms();
         Thread t = new Thread(this, threadName);
         t.start();
     }
 
     public void stop() {
-        Logging.log(Priority.INFO, "Stopping RandomEvent handler");
+        Logging.log(Logging.LogLevel.INFO, "Stopping RandomEvent handler");
         shouldRun = false;
     }
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Time: 11:43
  */
 public class GLModel implements Interactive {
+
     private final long fullID;
     private final int triangles;
     private final int stride;
@@ -41,14 +42,30 @@ public class GLModel implements Interactive {
         this.isValid = false;
     }
 
+    /**
+     * Gets the full ID of this model, more unique but may change.
+     * NOTE: Not advised to use without allot of testing
+     *
+     * @return FullID of this model
+     */
     public long getFullID() {
         return fullID;
     }
 
-    public int getTriangles() {
+    /**
+     * Gets the triangle count of this model.
+     *
+     * @return Triangle count of this model
+     */
+    public int getTriangleCount() {
         return triangles;
     }
 
+    /**
+     * Gets the stride of this model. Always - 12,16,20 or 24.
+     *
+     * @return The stride of this model
+     */
     public int getStride() {
         return stride;
     }
@@ -57,6 +74,12 @@ public class GLModel implements Interactive {
         return "id: " + getID() + " stride: " + getStride();
     }
 
+    /**
+     * Interacts with this model with the ContextMenu and the option given.
+     *
+     * @param menuOption Option to click (ie. "Drop","Use" etc.)
+     * @return True
+     */
     @Override
     public boolean interact(String menuOption) {
         Mouse.click(this.randomPoint(), Mouse.RIGHT_BUTTON);
@@ -66,11 +89,19 @@ public class GLModel implements Interactive {
         return true;
     }
 
+    /**
+     * Clicks this model.
+     */
     @Override
     public void click() {
         Mouse.click(this.randomPoint(), Mouse.LEFT_BUTTON);
     }
 
+    /**
+     * Checks if this model is valid for use.
+     *
+     * @return True if model is valid
+     */
     public boolean isValid() {
         return isValid;
     }
@@ -79,6 +110,11 @@ public class GLModel implements Interactive {
         return points; //clone or not?
     }
 
+    /**
+     * Gets the base ID of this Model.
+     *
+     * @return ID of this model
+     */
     public long getID() {
         return id;
     }
@@ -87,6 +123,11 @@ public class GLModel implements Interactive {
         return points.get(Calculations.getRandomNumber(0, points.size()));
     }
 
+    /**
+     * Gets the screen coordinate of this model.
+     *
+     * @return Screen coordinate of this model
+     */
     public Point getLocation() {
         return points.get(points.size() - 1);
     }

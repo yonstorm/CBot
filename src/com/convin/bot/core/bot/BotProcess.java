@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class BotProcess {
     private Process process;
     private final StreamGobbler sg;
-
+    private static final String xboot = "-Xbootclasspath/p:" + Settings.DATA_PATH + "jars/Canvas.jar;" + Settings.DATA_PATH + "lib/log4j.jar;" + Settings.DATA_PATH + "lib/javacpp.jar;" + Settings.DATA_PATH + "lib/javacv.jar;" + Settings.DATA_PATH + "lib/javacv-windows-x86.jar";
     private static int botCount = 0;
     public static final ArrayList<BotProcess> ACTIVE_BOTS = new ArrayList<BotProcess>();
     private final int botNumber;
@@ -50,7 +50,7 @@ public class BotProcess {
         String classpath = System.getProperty("java.class.path");
         String className = klass.getCanonicalName();
         ProcessBuilder builder = new ProcessBuilder(
-                javaBin, "-Xbootclasspath/p:" + Settings.DATA_PATH + "jars/Canvas.jar;" + Settings.DATA_PATH + "lib/log4j.jar", "-XX:+RestoreMXCSROnJNICalls", "-Xverify:none", "-Xmx256M", "-Xcheck:jni", "-cp", classpath, className);
+                javaBin, xboot, "-XX:+RestoreMXCSROnJNICalls", "-Xverify:none", "-Xmx256M", "-Xcheck:jni", "-cp", classpath, className);
         builder.redirectErrorStream(true);
         return builder.start();
     }

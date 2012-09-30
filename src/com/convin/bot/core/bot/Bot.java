@@ -8,6 +8,7 @@ import com.convin.bot.core.handlers.*;
 import com.convin.bot.core.io.StreamGobbler;
 import com.convin.bot.core.loader.AppletLoader;
 import com.convin.bot.core.logging.LogManager;
+import com.convin.bot.game.ui.GameInterfaceManager;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,6 +31,7 @@ public class Bot {
     private final LogWindow logWindow = new LogWindow(null);
     private final InstanceSettings instanceSettingsWindow = new InstanceSettings(null);
     private final AppletLoader loader;
+    private final GameInterfaceManager gameInterfaces = new GameInterfaceManager();
 
     public Bot(AppletLoader loader) {
         LogManager.setupLogger(logWindow.getLogArea());
@@ -98,5 +100,9 @@ public class Bot {
 
     public void showSettingsWindow() {
         instanceSettingsWindow.setVisible(true);
+    }
+
+    public GameInterfaceManager getGameInterfaceManager() {
+        return gameInterfaces;
     }
 }

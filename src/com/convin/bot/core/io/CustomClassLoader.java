@@ -17,6 +17,35 @@ import java.io.IOException;
 public class CustomClassLoader extends ClassLoader {
     private Type currentType;
 
+    public Class<?> loadCustomClass(File dir, String className, Type type) {
+        byte[] classByte;
+        Class<?> result = null;
+        try {
+            String classFile = className.replace('.', '/') + ".class";
+            switch (type) {
+                case SCRIPT:
+                    classByte = loadClassData(Settings.SCRIPTS_PATH + dir.getName() + Settings.FILE_SEPARATOR + classFile);
+                    break;
+                case RANDOM:
+                    classByte = loadClassData(Settings.RANDOMS_PATH + dir.getName() + Settings.FILE_SEPARATOR + classFile);
+                    break;
+                default:
+                    classByte = loadClassData(Settings.SCRIPTS_PATH + dir.getName() + Settings.FILE_SEPARATOR + classFile);
+
+            }
+            try {
+                result = defineClass(dir.getName() + "." + className, classByte, 0, classByte.length);
+            } catch (Exception e) {
+                System.out.println("Error43");
+                return null;
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static enum Type {
         RANDOM, SCRIPT
     }
@@ -33,7 +62,6 @@ public class CustomClassLoader extends ClassLoader {
     public Class<?> findClass(String className) {
         byte[] classByte;
         Class<?> result = null;
-
         try {
             String classFile = className.replace('.', '/') + ".class";
             switch (currentType) {

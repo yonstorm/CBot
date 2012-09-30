@@ -1,8 +1,10 @@
 package com.convin.bot.api.methods;
 
+import com.convin.bot.api.methods.color.ColorUtil;
 import com.convin.bot.api.wrappers.GLTexture;
 import com.convin.bot.core.handlers.updaters.OpenglObjectUpdater;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -86,7 +88,7 @@ public class Textures {
      * Searches for a GLTexture in opengl cache by filter
      *
      * @param filter Specifies the filter which conditions have to be accepted
-     * @return A GLTexure if one is found that is accepted by the filter else returns a invalid GLTexture
+     * @return A GLTexture if one is found that is accepted by the filter else returns a invalid GLTexture
      */
 
     public static GLTexture find(Filter<GLTexture> filter) {
@@ -96,5 +98,40 @@ public class Textures {
             }
         }
         return new GLTexture();
+    }
+
+    /**
+     * Searches for a GLTexture in opengl cache by parameters provided.
+     *
+     * @param id          Id to search for
+     * @param precisionID PrecisionID to search for
+     * @param tolerance   Tolerance for the precisionID
+     * @return A GLTexture if one is found with the parameters provided
+     */
+    public static GLTexture find(int id, int precisionID, int tolerance) {
+        for (GLTexture t : OpenglObjectUpdater.getTextureCache()) {
+            if (ColorUtil.distance(new Color(precisionID), t.getColorAvg()) <= tolerance && t.getId() == id) {
+                return t;
+            }
+        }
+        return new GLTexture();
+    }
+
+    /**
+     * Searches for GLTextures in opengl cache by parameters provided.
+     *
+     * @param id          Id to search for
+     * @param precisionID PrecisionID to search for
+     * @param tolerance   Tolerance for the precisionID
+     * @return Array of GLTextures if none is found return an empty array
+     */
+    public static GLTexture[] findAll(int id, int precisionID, int tolerance) {
+        ArrayList<GLTexture> matching = new ArrayList<GLTexture>();
+        for (GLTexture t : OpenglObjectUpdater.getTextureCache()) {
+            if (ColorUtil.distance(new Color(precisionID), t.getColorAvg()) <= tolerance && t.getId() == id) {
+                matching.add(t);
+            }
+        }
+        return matching.toArray(new GLTexture[matching.size()]);
     }
 }

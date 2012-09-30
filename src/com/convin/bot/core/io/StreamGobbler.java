@@ -129,8 +129,9 @@ public class StreamGobbler extends Thread {
             if (script != null) {
                 if (script.isRunning()) {
                     script.pause(!script.isPaused());
-                }
-                DialogBuilder.showErrorDialog("Script is not running", "The script your trying to pause is not running");
+                } else
+                    DialogBuilder.showErrorDialog("Script is not running", "The script your trying to pause is not running");
+
             } else
                 DialogBuilder.showErrorDialog("No script selected", "There is no script to pause");
         } else if (line.equals("stopScript")) {

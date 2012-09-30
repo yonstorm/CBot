@@ -45,12 +45,22 @@ public class Inventory {
     }
 
     /**
+     * Count specific items in inventory
+     *
+     * @param filter Filter to check against
+     * @return Count of items found
+     */
+    public static int countItems(final Filter<GLItem> filter) {
+        return findItems(filter).length;
+    }
+
+    /**
      * Checks if inventory contains any of the items specified by ids.
      *
      * @param ids The ids to look for in inventory
      * @return True if inventory contains any of the items specified by ids else false
      */
-    public static boolean contains(int... ids) {
+    public static boolean contains(final int... ids) {
         for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
             for (int id : ids) {
                 if (t.getId() == id) {
@@ -76,7 +86,7 @@ public class Inventory {
      * @param id Item id to search for
      * @return A valid GLItem object - if no item is found returns a invalid GLItem
      */
-    public static GLItem findItem(int id) {
+    public static GLItem findItem(final int id) {
         for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
             if (t.getId() == id) {
                 return t;
@@ -91,7 +101,7 @@ public class Inventory {
      * @param ids Item ids to search for
      * @return An array of GLItems, if no items are found returns an empty array
      */
-    public static GLItem[] findItems(int... ids) {
+    public static GLItem[] findItems(final int... ids) {
         ArrayList<GLItem> matching = new ArrayList<GLItem>();
         for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
             for (int id : ids) {
@@ -109,7 +119,7 @@ public class Inventory {
      * @param filter the filter which conditions have to be accepted
      * @return Array of GLItems that were found - if none is found returns an empty array
      */
-    public static GLItem[] findItems(Filter<GLItem> filter) {
+    public static GLItem[] findItems(final Filter<GLItem> filter) {
         ArrayList<GLItem> matching = new ArrayList<GLItem>();
         for (GLItem t : OpenglObjectUpdater.getInventoryItemCache()) {
             if (filter.accept(t)) {
@@ -121,7 +131,7 @@ public class Inventory {
 
 
     /**
-     * Searches for an item in inventory by specified TextureID ( thanks to iJava )
+     * Searches for an item in inventory by specified TextureID
      *
      * @param textureID textureID to search for
      * @return A valid GLItem - if no item is found returns a invalid GLItem
@@ -136,7 +146,7 @@ public class Inventory {
     }
 
     /**
-     * Searches for items in inventory by specified TextureIDs ( thanks to iJava )
+     * Searches for items in inventory by specified TextureIDs
      *
      * @param textureID textureIDs to search for
      * @return An array of GLItems, if no items are found returns an empty array

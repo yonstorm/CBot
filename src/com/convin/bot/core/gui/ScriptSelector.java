@@ -63,7 +63,6 @@ public class ScriptSelector extends JDialog {
             }
             rootList.add(category);
         }
-
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Scripts");
         for (DefaultMutableTreeNode aRootList : rootList) {
             root.add(aRootList);

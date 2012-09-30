@@ -5,7 +5,7 @@ import com.convin.bot.api.input.Mouse;
 import com.convin.bot.api.math.Calculations;
 import com.convin.bot.api.wrappers.GLFontCharacter;
 import com.convin.bot.api.wrappers.GLText;
-import com.convin.bot.api.wrappers.colour.RGB;
+import com.convin.bot.api.wrappers.color.RGB;
 
 import java.awt.*;
 import java.util.ArrayList;

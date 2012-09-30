@@ -1,7 +1,7 @@
 package com.convin.bot.api.wrappers;
 
-import com.convin.bot.api.wrappers.colour.RGB;
-import com.convin.bot.api.wrappers.colour.RGBA;
+import com.convin.bot.api.wrappers.color.RGB;
+import com.convin.bot.api.wrappers.color.RGBA;
 
 import java.awt.*;
 
@@ -10,6 +10,8 @@ import java.awt.*;
  * Date: 4.7.2012
  * Time: 10:39
  */
+
+// todo: Finish the Javadoc
 public class GLFontCharacter {
     private final int x;
     private final int y;
@@ -37,6 +39,11 @@ public class GLFontCharacter {
         return symbol + " - " + rgba.toString() + " - Shadow: " + isShadow() + " - Rendering: " + isRendering();
     }
 
+    /**
+     * Gets the Characters screen location.
+     *
+     * @return Location on screen
+     */
     public Point getLocation() {
         return location;
     }
@@ -65,10 +72,20 @@ public class GLFontCharacter {
         return rgb;
     }
 
+    /**
+     * Checks if this Character is a shadow of an another Character
+     *
+     * @return True if this is only a shadow
+     */
     public boolean isShadow() {
         return isShadow;
     }
 
+    /**
+     * Checks if this Character is being rendered on screen.
+     *
+     * @return True if rendered on screen
+     */
     public boolean isRendering() {
         return isRendering;
     }

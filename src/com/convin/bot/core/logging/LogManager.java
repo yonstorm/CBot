@@ -13,7 +13,7 @@ import java.util.Properties;
  * Time: 21:04
  */
 public class LogManager {
-    private static final Logger logger = Logger.getRootLogger();
+    private static final Logger logger = Logger.getRootLogger();//Logger.getRootLogger();
 
     public static Logger getLogger() {
         return logger;

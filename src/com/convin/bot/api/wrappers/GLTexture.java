@@ -1,5 +1,10 @@
 package com.convin.bot.api.wrappers;
 
+import com.convin.bot.api.common.Time;
+import com.convin.bot.api.input.Mouse;
+import com.convin.bot.api.math.Calculations;
+import com.convin.bot.api.methods.ContextMenu;
+
 import java.awt.*;
 
 /**
@@ -7,37 +12,26 @@ import java.awt.*;
  * Date: 5.7.2012
  * Time: 23:57
  */
-public class GLTexture extends Entity {
+public class GLTexture extends Entity implements Interactive {
     protected int textureID;
     protected int id;
-    protected int red;
-    protected int green;
-    protected int black;
-    protected int alpha;
     protected Point location;
     protected int width;
     protected int height;
     protected boolean isValid;
-    protected Rectangle textureRect;
+    protected int precisionID;
 
-    private GLTexture(int alpha, int red, int green, int black, int textureID, int id, int x, int y, int width, int height) {
-        this.alpha = alpha;
-        this.red = red;
-        this.green = green;
-        this.black = black;
+    protected GLTexture(int alpha, int red, int green, int black, int textureID, int id, int x, int y, int width, int height, int colorID) {
         this.textureID = textureID;
         this.id = id;
         this.location = new Point(x, y);
         this.width = width;
         this.height = height;
+        this.precisionID = colorID;
         this.isValid = true;
     }
 
     private GLTexture(int alpha, int red, int green, int black, int textureID, int id, int x, int y) {
-        this.alpha = alpha;
-        this.red = red;
-        this.green = green;
-        this.black = black;
         this.textureID = textureID;
         this.id = id;
         this.location = new Point(x, y);
@@ -47,36 +41,34 @@ public class GLTexture extends Entity {
     }
 
     public GLTexture() {
-        textureID = 0;
-        id = 0;
-        red = 0;
-        green = 0;
-        black = 0;
-        alpha = 0;
-        location = new Point(0, 0);
-        this.width = 0;
-        this.height = 0;
         this.isValid = false;
     }
 
+    /**
+     * Gets the bounding rectangle of this texture.
+     *
+     * @return Rectangle of this texture
+     */
+    public Rectangle getBoundingBox() {
+        return new Rectangle(location.x, location.y, width, height);
+    }
+
+    /**
+     * Gets the textureID of this texture.
+     *
+     * @return TextureID of this texture
+     */
     public int getTextureID() {
         return textureID;
     }
 
-    public int getRed() {
-        return red;
-    }
-
-    public int getGreen() {
-        return green;
-    }
-
-    public int getBlack() {
-        return black;
-    }
-
-    public int getAlpha() {
-        return alpha;
+    /**
+     * Gets the precisionID of this texture as Color object.
+     *
+     * @return Color object made from precisionID
+     */
+    public Color getColorAvg() {
+        return new Color(precisionID);
     }
 
     public int getId() {
@@ -102,6 +94,33 @@ public class GLTexture extends Entity {
 
     @Override
     public String toString() {
-        return "ID: " + this.id;
+        return "ID: " + this.id + " colorAVG: " + getColorAvg() + " tid: " + this.textureID;
+    }
+
+    @Override
+    public boolean interact(String menuOption) {
+        Mouse.click(getRandomPoint(), Mouse.RIGHT_BUTTON);
+        Time.sleep(253, 311);
+        ContextMenu.interact(menuOption);
+        Time.sleep(265, 420);
+        return true;
+    }
+
+    @Override
+    public void click() {
+        Mouse.click(getRandomPoint(), Mouse.LEFT_BUTTON);
+    }
+
+    private Point getRandomPoint() {
+        return new Point(Calculations.getRandomNumber(location.x, (location.x + width - 1)), Calculations.getRandomNumber(location.y, (location.y + height - 1)));
+    }
+
+    /**
+     * Gets the precisionID of this texture( Average color as int ).
+     *
+     * @return
+     */
+    public int getPrecisionID() {
+        return precisionID;
     }
 }

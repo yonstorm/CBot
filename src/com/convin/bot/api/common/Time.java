@@ -1,7 +1,9 @@
 package com.convin.bot.api.common;
 
+import com.convin.bot.api.conditions.Condition;
+import com.convin.bot.api.conditions.Conditions;
 import com.convin.bot.api.math.Calculations;
-import org.apache.log4j.Priority;
+import com.convin.bot.core.bot.Bot;
 
 /**
  * User: Joni
@@ -20,7 +22,7 @@ public final class Time {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
-            Logging.log(Priority.DEBUG, "Sleep interrupted");
+            Logging.log(Logging.LogLevel.INFO, "Sleep interrupted");
         }
     }
 
@@ -32,6 +34,44 @@ public final class Time {
      */
     public static void sleep(int min, int max) {
         sleep(Calculations.getRandomNumber(min, max));
+    }
+
+    /**
+     * Causes the Calling thread to sleep while given <code>condition</code> is not verified.
+     *
+     * @param condition Condition to wait to verify
+     * @param timeOut   Maximum time to wait for the condition
+     * @return True if the condition was verified
+     */
+
+    public static boolean waitFor(Conditions condition, int timeOut) {
+        long timeMark = System.currentTimeMillis();
+        boolean conditionVerified = condition.getCondition().verify();
+        while (Bot.CURRENT.getScriptHandler().getCurrentScript().isRunning() && !conditionVerified && System.currentTimeMillis() - timeMark < timeOut) {
+            //Logging.log(Logging.LogLevel.INFO, "Waiting for: " + condition.getCondition().name());
+            Time.sleep(300, 700);
+            conditionVerified = condition.getCondition().verify();
+        }
+        return conditionVerified;
+    }
+
+
+    /**
+     * Causes the Calling thread to sleep while given <code>condition</code> is not verified.
+     *
+     * @param condition Condition to wait to verify
+     * @param timeOut   Maximum time to wait for the condition
+     * @return True if the condition was verified
+     */
+    public static boolean waitFor(Condition condition, int timeOut) {
+        long timeMark = System.currentTimeMillis();
+        boolean conditionVerified = condition.verify();
+        while (Bot.CURRENT.getScriptHandler().getCurrentScript().isRunning() && !conditionVerified && System.currentTimeMillis() - timeMark < timeOut) {
+            //Logging.log(Logging.LogLevel.INFO,"Waiting for: " + condition.name());
+            Time.sleep(300, 700);
+            conditionVerified = condition.verify();
+        }
+        return conditionVerified;
     }
 
 }

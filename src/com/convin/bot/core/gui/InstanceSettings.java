@@ -4,7 +4,7 @@
 
 package com.convin.bot.core.gui;
 
-import com.convin.bot.api.methods.GLCommands;
+import com.convin.bot.api.methods.Commands;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,8 +22,9 @@ public class InstanceSettings extends JDialog {
     }
 
     private void okButtonActionPerformed(ActionEvent e) {
-        GLCommands.setGLPaint(cBoxEnablePaint.isSelected());
-        GLCommands.setPerformanceBoost(cBoxOldComp.isSelected());
+        Commands.setGLPaint(cBoxEnablePaint.isSelected());
+        Commands.setPerformanceBoost(cBoxOldComp.isSelected());
+        this.setVisible(false);
     }
 
     private void initComponents() {

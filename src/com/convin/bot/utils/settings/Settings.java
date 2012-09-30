@@ -10,6 +10,9 @@ import com.convin.bot.utils.ConfigReader;
  * To change this template use File | Settings | File Templates.
  */
 public class Settings {
+    //COPS
+    public static final String MAP_FILE_URL = "http://www.convinbot.net/cops/wm.data";
+    // DIRECTORY STRUCTURE
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String USER_DIR = getUserDir();
     //public static final String REALDIR = System.getProperty("user.dir");

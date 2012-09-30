@@ -13,7 +13,7 @@ public class GameConstants {
     public static final Rectangle MINIMAP_AREA = new Rectangle(517, 50, 247, 168);
     public static final Rectangle MINIMAP = new Rectangle(563, 68, 126, 144);
 
-    public static final Rectangle UPPER_TAB_AREA = new Rectangle(520, 215, 244, 36);
-    public static final Rectangle BOTTOM_TAB_AREA = new Rectangle(520, 516, 242, 35);
+    public static final Rectangle UPPER_INVENTORY_TAB_AREA = new Rectangle(520, 215, 244, 36);
+    public static final Rectangle BOTTOM_INVENTORY_TAB_AREA = new Rectangle(520, 516, 242, 35);
     public static final Rectangle CHAT_TAB_AREA = new Rectangle(0, 528, 519, 24);
 }

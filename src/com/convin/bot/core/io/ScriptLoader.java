@@ -24,35 +24,29 @@ import java.util.zip.ZipFile;
  */
 public class ScriptLoader {
     private final ArrayList<ScriptData> scripts = new ArrayList<ScriptData>();
+    private ArrayList<File> subDirectories = new ArrayList<File>();
 
     public ScriptLoader(AccessorMethods ac) {
     }
 
     public boolean loadScripts() {
         scripts.clear();
+        subDirectories.clear();
         File dir = new File(Settings.SCRIPTS_PATH);
+
         if (dir == null || dir.listFiles() == null) {
             JOptionPane.showMessageDialog(null, "Check your scripts folder, anything there?", "ERROR: Folder problem", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         CustomClassLoader cl = new CustomClassLoader();
-
         for (File f : dir.listFiles()) {
-            if (f.getName().contains(".class")) {
-                String className = f.getName().replace(".class", "");
-                Class<?> classToLoad;
-                classToLoad = cl.loadCustomClass(className, CustomClassLoader.Type.SCRIPT);
-                if (!isScript(classToLoad) || !classToLoad.isAnnotationPresent(ScriptManifest.class)) {
-                    continue;
-                }
-                ScriptManifest manifest = classToLoad.getAnnotation(ScriptManifest.class);
-
-                if (manifest == null || manifest.scriptName() == null || manifest.scriptName().length() < 1) {
-                    continue;
-                }
-
-                scripts.add(new ScriptData(classToLoad, manifest.scriptName(), manifest.authors(), manifest.category(), manifest.description(), manifest.version()));
+            if (f.isDirectory()) {
+                subDirectories.add(f);
+                continue;
+            } else if (f.getName().contains(".class")) {
+                readScript(cl, f);
+                continue;
             } else if (f.getName().contains(".jar")) {
                 try {
                     ClassLoader loader = URLClassLoader.newInstance(new URL[]{new URL("jar:file:" + f.getAbsolutePath() + "!/")});
@@ -95,8 +89,49 @@ public class ScriptLoader {
                 }
             }
         }
+        if (!subDirectories.isEmpty()) {
+            for (File f : subDirectories) {
+                for (File f2 : f.listFiles()) {
+                    if (f2.getName().contains(".class")) {
+                        readScript(cl, f2, f);
+                    }
+                }
+            }
+        }
 
         return !scripts.isEmpty();
+    }
+
+    private void readScript(CustomClassLoader cl, File scriptFile, File dir) {
+        String className = scriptFile.getName().replace(".class", "");
+        Class<?> classToLoad;
+        classToLoad = cl.loadCustomClass(dir, className, CustomClassLoader.Type.SCRIPT);
+        if (!isScript(classToLoad) || !classToLoad.isAnnotationPresent(ScriptManifest.class)) {
+            return;
+        }
+        ScriptManifest manifest = classToLoad.getAnnotation(ScriptManifest.class);
+        if (manifest == null || manifest.scriptName() == null || manifest.scriptName().length() < 1) {
+            return;
+        }
+
+        scripts.add(new ScriptData(classToLoad, manifest.scriptName(), manifest.authors(), manifest.category(), manifest.description(), manifest.version()));
+
+
+    }
+
+    private void readScript(CustomClassLoader cl, File f) {
+        String className = f.getName().replace(".class", "");
+        Class<?> classToLoad;
+        classToLoad = cl.loadCustomClass(className, CustomClassLoader.Type.SCRIPT);
+        if (!isScript(classToLoad) || !classToLoad.isAnnotationPresent(ScriptManifest.class)) {
+            return;
+        }
+        ScriptManifest manifest = classToLoad.getAnnotation(ScriptManifest.class);
+        if (manifest == null || manifest.scriptName() == null || manifest.scriptName().length() < 1) {
+            return;
+        }
+
+        scripts.add(new ScriptData(classToLoad, manifest.scriptName(), manifest.authors(), manifest.category(), manifest.description(), manifest.version()));
     }
 
     private boolean isScript(Class<?> clazz) {

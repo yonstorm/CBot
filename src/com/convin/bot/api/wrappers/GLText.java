@@ -25,7 +25,7 @@ public class GLText {
     private void splitPoints(GLFontCharacter[] glFontCharacters) {
         x = new int[glFontCharacters.length];
         y = new int[glFontCharacters.length];
-        for (int i = 0; i < glFontCharacters.length - 1; i++) {
+        for (int i = 0; i < glFontCharacters.length; i++) {
             x[i] = glFontCharacters[i].getLocation().x;
             y[i] = glFontCharacters[i].getLocation().y;
         }
@@ -68,7 +68,7 @@ public class GLText {
         sortSmallestToLargest(fonts);
         char[] chars = new char[fonts.length];
         if (fonts.length > 0) {
-            for (int i = 0; i < fonts.length - 1; i++) {
+            for (int i = 0; i < fonts.length; i++) {
                 chars[i] = fonts[i].getSymbol();
             }
         }
@@ -102,7 +102,7 @@ public class GLText {
             int currentY = this.getGlFontCharacters()[0].getY();
             ArrayList<GLFontCharacter> currentLine = new ArrayList<GLFontCharacter>();
             for (GLFontCharacter c : this.getGlFontCharacters()) {
-                if (currentY == c.getY() || Math.abs(c.getY() - currentY) <= 6) {
+                if (currentY == c.getY() || Math.abs(c.getY() - currentY) <= 8) {
                     currentLine.add(c);
                 } else {
                     lines.add(new GLText(currentLine.toArray(new GLFontCharacter[currentLine.size()])));
