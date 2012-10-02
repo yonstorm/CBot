@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class BotProcess {
     private Process process;
     private final StreamGobbler sg;
-    private static final String xboot = "-Xbootclasspath/p:" + Settings.DATA_PATH + "jars/Canvas.jar;" + Settings.DATA_PATH + "lib/log4j.jar;" + Settings.DATA_PATH + "lib/javacpp.jar;" + Settings.DATA_PATH + "lib/javacv.jar;" + Settings.DATA_PATH + "lib/javacv-windows-x86.jar";
+    private static final String xboot = "-Xbootclasspath/p:" + Settings.DATA_PATH + "jars/Canvas.jar;" + Settings.DATA_PATH + "lib/log4j.jar;" + Settings.DATA_PATH + "jars/javacv_re.jar";
     private static int botCount = 0;
     public static final ArrayList<BotProcess> ACTIVE_BOTS = new ArrayList<BotProcess>();
     private final int botNumber;
@@ -43,14 +43,19 @@ public class BotProcess {
     }
 
     private Process startBotProcess(Class klass) throws IOException {
+        String libJavacv = Settings.DATA_PATH + "lib" + Settings.FILE_SEPARATOR + "javacv_re.jar";
+
         String javaHome = System.getProperty("java.home");
-        String javaBin = javaHome +
-                File.separator + "bin" +
-                File.separator + "java";
-        String classpath = System.getProperty("java.class.path");
+        String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
+        //String libraryPath = "-Djava.library.path=\"" + System.getProperty("java.library.path") + "\"";
+        String libraryPath = "-Djava.library.path=\"" + Settings.USER_DIR + Settings.FILE_SEPARATOR + "data" + Settings.FILE_SEPARATOR + "dlls" + "\"";
+        String classpath = "\"" + System.getProperty("java.class.path") + ";" + libJavacv + "\""; //System.getProperty("java.class.path");
+
         String className = klass.getCanonicalName();
+        System.out.println("CP " + classpath + className);
+        System.out.println(javaBin + libraryPath + xboot + "-XX:+RestoreMXCSROnJNICalls" + "-Xverify:none" + "-Xmx256M" + "-Xcheck:jni" + "-cp" + classpath + className);
         ProcessBuilder builder = new ProcessBuilder(
-                javaBin, xboot, "-XX:+RestoreMXCSROnJNICalls", "-Xverify:none", "-Xmx256M", "-Xcheck:jni", "-cp", classpath, className);
+                javaBin, libraryPath, xboot, "-XX:+RestoreMXCSROnJNICalls", "-Xverify:none", "-Xmx256M", "-Xcheck:jni", "-cp", classpath, className);
         builder.redirectErrorStream(true);
         return builder.start();
     }

@@ -33,7 +33,7 @@ public abstract class Script extends ScriptTaskExecutor implements Runnable {
     /**
      * Will be run everytime before the script starts, if returns false script will not start.
      *
-     * @return True if onStart is succesful.
+     * @return True if onStart is successful.
      */
     public abstract boolean onStart();
 
@@ -49,7 +49,7 @@ public abstract class Script extends ScriptTaskExecutor implements Runnable {
 
     @Override
     public void run() {
-        Logging.log(Priority.DEBUG, "Starting script");
+        Logging.log(Logging.LogLevel.INFO, "Starting script");
         setup();
         while (isRunning) {
             synchronized (this) {

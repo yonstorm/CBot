@@ -1,6 +1,5 @@
 package com.convin.bot.cops;
 
-import com.convin.bot.api.common.Logging;
 import com.googlecode.javacv.cpp.opencv_core;
 
 import java.awt.*;
@@ -33,7 +32,7 @@ public class TemplateMatcher {
         if (res != null) {
             cvMatchTemplate(scene, template, res, CV_TM_SQDIFF_NORMED); // CV_TM_SQDIFF_NORMED
             cvMinMaxLoc(res, minVal, maxVal, minLoc, maxLoc, null);
-            Logging.log(Logging.LogLevel.INFO, "Match %" + (maxVal[0] * 100));
+            //Logging.log(Logging.LogLevel.INFO, "Match %" + (maxVal[0] * 100));
             tempRect0.x(minLoc.x());
             tempRect0.y(minLoc.y());
             tempRect1.x(minLoc.x() + template.width());

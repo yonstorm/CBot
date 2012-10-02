@@ -33,13 +33,14 @@ public class RandomHandler implements Runnable {
 
         while (shouldRun) {
             for (RandomEventSolver r : randomEventSolvers) {
+                if (!shouldRun) break;
                 if (r.isActive()) {
                     currentActiveRandomEventSolver = r;
                     Logging.log(Logging.LogLevel.INFO, "Antirandom activated - " + r.getName());
                     if (r.canBeSolved()) {
                         ac.getScript().pause(true);
                         r.setup();
-                        while (r.isActive()) {
+                        while (r.isActive() && shouldRun) {
                             r.run();
                             Time.sleep(220);
                         }

@@ -56,6 +56,8 @@ public class Bot {
         openglHandler.start();
         botReady = true;
 
+        // To preload native libraries
+        //PositionFinder.findPosition();
 
         //scriptHandler.loadScript("MiningTest");
         //displayHandler.showAll();

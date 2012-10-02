@@ -22,6 +22,7 @@ public class BotMain {
 
     static {
         Toolkit.getDefaultToolkit().getSystemEventQueue().push(eventQueue);
+
     }
 
 
