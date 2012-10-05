@@ -1,7 +1,5 @@
 package com.convin.bot.core.components;
 
-import com.convin.bot.utils.settings.Settings;
-
 import javax.swing.*;
 import java.applet.Applet;
 import java.awt.*;
@@ -40,8 +38,8 @@ public class AppletFrame extends JFrame {
         //======== this ========
         setFont(new Font("Segoe UI", Font.PLAIN, 14));
         setTitle("Game Applet display");
-        setIconImage(new ImageIcon(Settings.ICON_PATH + "app_icon.png").getImage());
-        setMinimumSize(new Dimension(800, 820));
+        setIconImage(new ImageIcon("E:\\Projects\\ConvinBot\\ConvinBotGitHub\\data\\icons\\app_icon.png").getImage());
+        setMinimumSize(new Dimension(800, 860));
         Container contentPane = getContentPane();
 
         //======== displayTabs ========
@@ -54,6 +52,19 @@ public class AppletFrame extends JFrame {
             {
                 pnlAppletTab.setPreferredSize(new Dimension(800, 565));
                 pnlAppletTab.setBackground(Color.black);
+
+                // JFormDesigner evaluation mark
+                pnlAppletTab.setBorder(new javax.swing.border.CompoundBorder(
+                        new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                                java.awt.Color.red), pnlAppletTab.getBorder()));
+                pnlAppletTab.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                    public void propertyChange(java.beans.PropertyChangeEvent e) {
+                        if ("border".equals(e.getPropertyName())) throw new RuntimeException();
+                    }
+                });
+
                 pnlAppletTab.setLayout(new GridLayout());
             }
             displayTabs.addTab("Applet", pnlAppletTab);
@@ -76,7 +87,8 @@ public class AppletFrame extends JFrame {
             textAreaLog.setFont(new Font("Segoe UI", Font.PLAIN, 14));
             textAreaLog.setEditable(false);
             textAreaLog.setLineWrap(true);
-            textAreaLog.setAutoscrolls(true);
+            textAreaLog.setPreferredSize(new Dimension(507, 75));
+            textAreaLog.setMinimumSize(new Dimension(507, 75));
             scrollPaneLog.setViewportView(textAreaLog);
         }
 

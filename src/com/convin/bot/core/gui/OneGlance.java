@@ -6,7 +6,6 @@ package com.convin.bot.core.gui;
 
 import com.convin.bot.api.common.Time;
 import com.convin.bot.core.bot.BotProcess;
-import com.convin.bot.utils.settings.Settings;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -152,7 +151,7 @@ public class OneGlance extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Ka Str
+        // Generated using JFormDesigner Evaluation license - Joni StrÃ¶mberg
         btnSelectScript = new JButton();
         btnStart = new JButton();
         btnPause = new JButton();
@@ -167,7 +166,6 @@ public class OneGlance extends JPanel {
         script = new JLabel();
         btnStop = new JButton();
         btnSettings = new JLabel();
-        btnLog = new JLabel();
         lblStatus = new JLabel();
         status = new JLabel();
         lblUserSpecified1 = new JLabel();
@@ -181,10 +179,22 @@ public class OneGlance extends JPanel {
         setBorder(new MatteBorder(0, 0, 1, 0, Color.gray));
         setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
+        // JFormDesigner evaluation mark
+        setBorder(new javax.swing.border.CompoundBorder(
+                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                        java.awt.Color.red), getBorder()));
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent e) {
+                if ("border".equals(e.getPropertyName())) throw new RuntimeException();
+            }
+        });
+
 
         //---- btnSelectScript ----
         btnSelectScript.setText("Select script");
-        btnSelectScript.setIcon(new ImageIcon(Settings.ICON_PATH + "Eject24.png"));
+        btnSelectScript.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Eject24.png"));
         btnSelectScript.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnSelectScript.setBackground(UIManager.getColor("Button.background"));
         btnSelectScript.setForeground(new Color(51, 51, 51));
@@ -197,7 +207,7 @@ public class OneGlance extends JPanel {
 
         //---- btnStart ----
         btnStart.setText("Start");
-        btnStart.setIcon(new ImageIcon(Settings.ICON_PATH + "Play24.png"));
+        btnStart.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Play24.png"));
         btnStart.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnStart.setBackground(UIManager.getColor("Button.background"));
         btnStart.setForeground(new Color(51, 51, 51));
@@ -211,7 +221,7 @@ public class OneGlance extends JPanel {
         //---- btnPause ----
         btnPause.setText("Pause");
         btnPause.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        btnPause.setIcon(new ImageIcon(Settings.ICON_PATH + "Pause24.png"));
+        btnPause.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Pause24.png"));
         btnPause.setBackground(UIManager.getColor("Button.background"));
         btnPause.setForeground(new Color(51, 51, 51));
         btnPause.addActionListener(new ActionListener() {
@@ -223,8 +233,8 @@ public class OneGlance extends JPanel {
 
         //---- btnBlockHuman ----
         btnBlockHuman.setText("Block human");
-        btnBlockHuman.setIcon(new ImageIcon(Settings.ICON_PATH + "User-green24.png"));
-        btnBlockHuman.setSelectedIcon(new ImageIcon(Settings.ICON_PATH + "User-red24.png"));
+        btnBlockHuman.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\User-green24.png"));
+        btnBlockHuman.setSelectedIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\User-red24.png"));
         btnBlockHuman.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnBlockHuman.setBackground(UIManager.getColor("Button.background"));
         btnBlockHuman.setForeground(new Color(51, 51, 51));
@@ -239,7 +249,7 @@ public class OneGlance extends JPanel {
         btnShow.setText("Show");
         btnShow.setForeground(new Color(51, 51, 51));
         btnShow.setBackground(UIManager.getColor("Button.background"));
-        btnShow.setIcon(new ImageIcon(Settings.ICON_PATH + "Eye24.png"));
+        btnShow.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Eye24.png"));
         btnShow.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnShow.addActionListener(new ActionListener() {
             @Override
@@ -249,7 +259,7 @@ public class OneGlance extends JPanel {
         });
 
         //---- btnShutdown ----
-        btnShutdown.setIcon(new ImageIcon(Settings.ICON_PATH + "power_24.png"));
+        btnShutdown.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\power_24.png"));
         btnShutdown.setToolTipText("Shutdown this instance");
         btnShutdown.addMouseListener(new MouseAdapter() {
             @Override
@@ -284,7 +294,7 @@ public class OneGlance extends JPanel {
 
         //---- btnStop ----
         btnStop.setText("Stop");
-        btnStop.setIcon(new ImageIcon(Settings.ICON_PATH + "Stop24.png"));
+        btnStop.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\Stop24.png"));
         btnStop.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnStop.setBackground(UIManager.getColor("Button.background"));
         btnStop.setForeground(new Color(51, 51, 51));
@@ -296,22 +306,12 @@ public class OneGlance extends JPanel {
         });
 
         //---- btnSettings ----
-        btnSettings.setIcon(new ImageIcon(Settings.ICON_PATH + "settings-24.png"));
+        btnSettings.setIcon(new ImageIcon("E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\settings-24.png"));
         btnSettings.setToolTipText("View settings");
         btnSettings.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 settingsMouseClicked();
-            }
-        });
-
-        //---- btnLog ----
-        btnLog.setIcon(new ImageIcon(Settings.ICON_PATH + "page-24.png"));
-        btnLog.setToolTipText("View log");
-        btnLog.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                logMouseClicked();
             }
         });
 
@@ -358,7 +358,7 @@ public class OneGlance extends JPanel {
                                                 .addComponent(btnPause)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnBlockHuman)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup()
                                                         .addComponent(btnShutdown, GroupLayout.Alignment.TRAILING)
                                                         .addComponent(btnSettings, GroupLayout.Alignment.TRAILING)))
@@ -382,20 +382,17 @@ public class OneGlance extends JPanel {
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(lblStatus)
                                                                 .addGap(18, 18, 18)
-                                                                .addComponent(status, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
-                                                                .addComponent(btnLog))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(lblUserSpecified1)
-                                                                                .addGap(18, 18, 18)
-                                                                                .addComponent(scriptSpecific1, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(lblUserSpecified2)
-                                                                                .addGap(18, 18, 18)
-                                                                                .addComponent(scriptSpecific2, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)))
-                                                                .addGap(0, 377, Short.MAX_VALUE))))))
+                                                                .addComponent(status, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                                .addGroup(layout.createSequentialGroup()
+                                                                        .addComponent(lblUserSpecified1)
+                                                                        .addGap(18, 18, 18)
+                                                                        .addComponent(scriptSpecific1, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(layout.createSequentialGroup()
+                                                                        .addComponent(lblUserSpecified2)
+                                                                        .addGap(18, 18, 18)
+                                                                        .addComponent(scriptSpecific2, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup()
@@ -440,15 +437,13 @@ public class OneGlance extends JPanel {
                                 .addComponent(btnShutdown)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSettings)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLog)
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Ka Str
+    // Generated using JFormDesigner Evaluation license - Joni StrÃ¶mberg
     private JButton btnSelectScript;
     private JButton btnStart;
     private JButton btnPause;
@@ -463,7 +458,6 @@ public class OneGlance extends JPanel {
     private JLabel script;
     private JButton btnStop;
     private JLabel btnSettings;
-    private JLabel btnLog;
     private JLabel lblStatus;
     private JLabel status;
     private JLabel lblUserSpecified1;
