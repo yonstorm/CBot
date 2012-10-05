@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class BotProcess {
     private Process process;
     private final StreamGobbler sg;
-    private static final String xboot = "-Xbootclasspath/p:" + Settings.DATA_PATH + "jars/Canvas.jar;" + Settings.DATA_PATH + "lib/log4j.jar;" + Settings.DATA_PATH + "jars/javacv_re.jar";
+    private static final String xboot = "-Xbootclasspath/p:" + Settings.DATA_PATH + "jars" + Settings.FILE_SEPARATOR + "Canvas.jar;" + Settings.DATA_PATH + "lib" + Settings.FILE_SEPARATOR + "log4j.jar;" + Settings.DATA_PATH + "jars" + Settings.FILE_SEPARATOR + "javacv_re.jar";
     private static int botCount = 0;
     public static final ArrayList<BotProcess> ACTIVE_BOTS = new ArrayList<BotProcess>();
     private final int botNumber;
@@ -47,13 +47,10 @@ public class BotProcess {
 
         String javaHome = System.getProperty("java.home");
         String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
-        //String libraryPath = "-Djava.library.path=\"" + System.getProperty("java.library.path") + "\"";
         String libraryPath = "-Djava.library.path=\"" + Settings.USER_DIR + Settings.FILE_SEPARATOR + "data" + Settings.FILE_SEPARATOR + "dlls" + "\"";
-        String classpath = "\"" + System.getProperty("java.class.path") + ";" + libJavacv + "\""; //System.getProperty("java.class.path");
+        String classpath = "\"" + System.getProperty("java.class.path") + ";" + libJavacv + "\"";
 
         String className = klass.getCanonicalName();
-        System.out.println("CP " + classpath + className);
-        System.out.println(javaBin + libraryPath + xboot + "-XX:+RestoreMXCSROnJNICalls" + "-Xverify:none" + "-Xmx256M" + "-Xcheck:jni" + "-cp" + classpath + className);
         ProcessBuilder builder = new ProcessBuilder(
                 javaBin, libraryPath, xboot, "-XX:+RestoreMXCSROnJNICalls", "-Xverify:none", "-Xmx256M", "-Xcheck:jni", "-cp", classpath, className);
         builder.redirectErrorStream(true);

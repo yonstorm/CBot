@@ -5,11 +5,14 @@ import com.convin.bot.api.common.Logging;
 import com.convin.bot.api.methods.Camera;
 import com.convin.bot.api.methods.Minimap;
 import com.convin.bot.core.bot.Bot;
+import com.convin.bot.utils.settings.Settings;
 import com.googlecode.javacv.cpp.opencv_core;
 import com.googlecode.javacv.cpp.opencv_imgproc;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import static com.googlecode.javacv.cpp.opencv_core.*;
@@ -30,19 +33,32 @@ public class PositionFinder {
 
     private static boolean setup() {
         BufferedImage WORLD_MAP_ORIG = null;
-        try {
-            WORLD_MAP_ORIG = ImageManipulation.stripAlpha(MapHandler.downloadMap());
-            //WORLD_MAP_ORIG = ImageManipulation.stripAlpha(ImageIO.read(new File("C:/rsmap/worldmap.png")));
-            width = WORLD_MAP_ORIG.getWidth();
-            height = WORLD_MAP_ORIG.getHeight();
-
-        } catch (IOException e) {
-            Logging.log(Logging.LogLevel.ERROR, "Could not download map file");
-            Bot.CURRENT.getScriptHandler().stopScript();
+        if (!mapExists()) {
+            try {
+                WORLD_MAP_ORIG = ImageManipulation.stripAlpha(MapHandler.downloadMap());
+                //WORLD_MAP_ORIG = ImageManipulation.stripAlpha(ImageIO.read(new File("C:/rsmap/worldmap.png")));
+            } catch (IOException e) {
+                Logging.log(Logging.LogLevel.ERROR, "Could not download map file");
+                Bot.CURRENT.getScriptHandler().stopScript();
+            }
+        } else {
+            try {
+                WORLD_MAP_ORIG = ImageManipulation.stripAlpha(ImageIO.read(new File(Settings.CACHE_FOLDER + "wm.data")));
+            } catch (IOException e) {
+                Logging.log(Logging.LogLevel.ERROR, "Could not load map file");
+                Bot.CURRENT.getScriptHandler().stopScript();
+            }
         }
+        width = WORLD_MAP_ORIG.getWidth();
+        height = WORLD_MAP_ORIG.getHeight();
         WORLD_MAP_COMP = convert2CompatibleImage(WORLD_MAP_ORIG);
         isSetup = true;
         return true;
+    }
+
+    private static boolean mapExists() {
+        File map = new File(Settings.CACHE_FOLDER + "wm.data");
+        return map.isFile();
     }
 
     public static Point findPosition() {

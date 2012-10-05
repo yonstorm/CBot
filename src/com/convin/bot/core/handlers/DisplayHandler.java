@@ -2,6 +2,7 @@ package com.convin.bot.core.handlers;
 
 import com.convin.bot.api.common.Logging;
 import com.convin.bot.core.bot.AccessorMethods;
+import com.convin.bot.core.components.AppletFrame;
 import com.convin.bot.core.components.CustomFrame;
 import com.convin.bot.core.components.ImagePanel;
 import com.convin.bot.core.handlers.updaters.DisplayUpdater;
@@ -26,39 +27,38 @@ public class DisplayHandler {
     private Thread displayHandlerThread;
 
     private final AccessorMethods ac;
-    private final CustomFrame appletFrame;
-    private final CustomFrame imageFrame;
     private final DisplayUpdater displayUpdater;
     private final ImagePanel imagePanel;
     private boolean isRenewing;
+
+    private AppletFrame gameFrame;
 
     static {
         System.load(Settings.DLL_PATH + "opengl32.dll");
     }
 
-    public DisplayHandler(Applet applet, ImagePanel imagePanel, CustomFrame appletFrame, CustomFrame imageFrame, AccessorMethods ac) {
+    public DisplayHandler(AppletFrame frame, Applet applet, ImagePanel imagePanel, AccessorMethods ac) {
         this.ac = ac;
         this.imagePanel = imagePanel;
-        this.appletFrame = appletFrame;
-        this.imageFrame = imageFrame;
         this.displayUpdater = new DisplayUpdater(ac, imagePanel);
 
         this.applet = applet;
 
-        prepareFrame(appletFrame, this.applet);
-        prepareFrame(imageFrame, imagePanel);
+        this.gameFrame = frame;
+        gameFrame.initApplet(applet, imagePanel);
+
         setup();
     }
 
     // Reloads the applet
     public void refreshApplet() {
         imagePanel.setRefreshing(true);
-        appletFrame.remove(applet);
+        gameFrame.getAppletTab().remove(applet);
         Applet newApplet = ac.getLoader().loadApplet();
-        appletFrame.add(newApplet);
+        gameFrame.getAppletTab().add(newApplet);
         applet.destroy();
         this.applet = newApplet;
-        appletFrame.revalidate();
+        gameFrame.revalidate();
         imagePanel.setRefreshing(false);
     }
 
@@ -78,15 +78,11 @@ public class DisplayHandler {
 
     public void showGame(boolean selected) {
         if (ac.getSettings().isPaintEnabled() && selected) {
-            imageFrame.requestFocus();
-            imageFrame.setVisible(true);
-            appletFrame.setVisible(false);
+            gameFrame.setVisible(true);
         } else if (selected) {
-            imageFrame.setVisible(false);
-            appletFrame.setVisible(true);
+            gameFrame.setVisible(true);
         } else {
-            imageFrame.setVisible(false);
-            appletFrame.setVisible(false);
+            gameFrame.setVisible(false);
         }
     }
 
@@ -112,15 +108,12 @@ public class DisplayHandler {
     }
 
     public void showAll() {
-        appletFrame.setVisible(true);
-        appletFrame.setState(Frame.NORMAL);
-        imageFrame.setVisible(true);
-        imageFrame.setState(Frame.NORMAL);
+        gameFrame.setVisible(true);
+        gameFrame.setState(Frame.NORMAL);
     }
 
     public void hideAll() {
-        appletFrame.setVisible(false);
-        imageFrame.setVisible(false);
+        gameFrame.setVisible(false);
     }
 
     public void setRenewing(boolean renewing) {
@@ -135,10 +128,7 @@ public class DisplayHandler {
         return this.displayUpdater;
     }
 
-    public CustomFrame[] getFrames() {
-        CustomFrame[] frames = new CustomFrame[2];
-        frames[0] = appletFrame;
-        frames[1] = imageFrame;
-        return frames;
+    public AppletFrame getFrame() {
+        return gameFrame;
     }
 }

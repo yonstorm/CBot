@@ -1,0 +1,51 @@
+JFDML JFormDesigner: "5.1.0.2.64" Java: "1.6.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp displayTabs::l::629:x, comp scrollPaneLog::l:::x}"
+			"$verticalGroup": "par l {seq l {comp displayTabs::::484:x, space :::p, comp scrollPaneLog:::p:159:p}}"
+		} ) {
+			name: "this"
+			"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			"title": "Game Applet display"
+			"iconImage": new com.jformdesigner.model.SwingIcon( 1, "E:\\Projects\\ConvinBot\\ConvinBotGitHub\\data\\icons\\app_icon.png" )
+			"minimumSize": new java.awt.Dimension( 800, 860 )
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "displayTabs"
+				"minimumSize": new java.awt.Dimension( 1, 1 )
+				"preferredSize": new java.awt.Dimension( 800, 565 )
+				"background": new com.jformdesigner.model.SwingColor( "DesktopPane.background" )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+					name: "pnlAppletTab"
+					"preferredSize": new java.awt.Dimension( 800, 565 )
+					"background": new java.awt.Color( 0, 0, 0, 255 )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Applet"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+					name: "pnlPaintableTab"
+					"preferredSize": new java.awt.Dimension( 800, 565 )
+					"background": new java.awt.Color( 0, 0, 0, 255 )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Paintable"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPaneLog"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textAreaLog"
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+					"editable": false
+					"lineWrap": true
+					"preferredSize": new java.awt.Dimension( 507, 75 )
+					"minimumSize": new java.awt.Dimension( 507, 75 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 645, 685 )
+		} )
+	}
+}

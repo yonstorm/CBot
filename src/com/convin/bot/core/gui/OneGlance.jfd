@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "5.1.0.0.51" Java: "1.6.0_29" encoding: "UTF-8"
+JFDML JFormDesigner: "5.1.0.2.64" Java: "1.6.0_31" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp btnShow:::p:90:p, space :p:30:p, comp btnSelectScript:::p::p, space :::p, comp btnStart:::p::p, space :::p, comp btnStop:::p::p, space :::p, comp btnPause:::p::p, space s:::p, comp btnBlockHuman:::p::p, space ::92:x, par l {comp btnShutdown::t:p::p, comp btnSettings::t:p::p}}, seq {par l {par t:l::p {seq l {comp lblScript:::p::p, space :::x, comp script:::p:97:p}, seq l {comp lblAccount:::p::p, space :p:18:p, comp account:::p:97:p}}, seq l {comp lbltimeRunning:::p::p, space u:::p, comp timeRunning:::p:87:p}}, space :p:41:p, par l {seq {comp lblStatus:::p::p, space s:::p, comp status:::p:138:p, space ::351:x, comp btnLog:::p::p}, seq {par t {seq {comp lblUserSpecified1:::p::p, space :18:18:p, comp scriptSpecific1:::p:138:p}, seq {comp lblUserSpecified2:::p::p, space s:::p, comp scriptSpecific2:::p:138:p}}, space :0:377:x}}}}}}"
-			"$verticalGroup": "par l {seq l {space :::p, par b {comp btnShow::b:p::p, par b:b {comp btnStart::b:p::p, comp btnSelectScript::l:::x, comp btnStop::b:p::p, comp btnPause::b:::x, comp btnBlockHuman::b:p::p}}, space :p:18:p, par t {par b {comp lblScript::b:p::p, comp script::b:p::p}, par b {comp lblStatus::b:p::p, comp status::b:p::p}}, space :::p, par l {seq l {par b {comp account::b:p::p, comp lblAccount::b:p::p}, space :::p, par b {comp lbltimeRunning::b:p::p, comp timeRunning::b:p::p}}, seq l {par l {comp lblUserSpecified1::l:p::p, comp scriptSpecific1::l:p::p}, space :::p, par b {comp scriptSpecific2::b:p::p, comp lblUserSpecified2::b:p::p}}}, space :p:11:p}, seq l {comp btnShutdown:::p::p, space :::p, comp btnSettings:::p::p, space :::p, comp btnLog:::p::p, space :0:0:x}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp btnShow:::p:90:p, space :p:30:p, comp btnSelectScript:::p::p, space :::p, comp btnStart:::p::p, space :::p, comp btnStop:::p::p, space :::p, comp btnPause:::p::p, space s:::p, comp btnBlockHuman:::p::p, space ::110:x, par l {comp btnShutdown::t:p::p, comp btnSettings::t:p::p}}, seq {par l {par t:l::p {seq l {comp lblScript:::p::p, space :::x, comp script:::p:97:p}, seq l {comp lblAccount:::p::p, space :p:18:p, comp account:::p:97:p}}, seq l {comp lbltimeRunning:::p::p, space u:::p, comp timeRunning:::p:87:p}}, space :p:41:p, par l {seq {comp lblStatus:::p::p, space s:::p, comp status:::p:138:p}, par t {seq {comp lblUserSpecified1:::p::p, space :18:18:p, comp scriptSpecific1:::p:138:p}, seq {comp lblUserSpecified2:::p::p, space s:::p, comp scriptSpecific2:::p:138:p}}}, space :0:0:x}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp btnShow::b:p::p, par b:b {comp btnStart::b:p::p, comp btnSelectScript::l:::x, comp btnStop::b:p::p, comp btnPause::b:::x, comp btnBlockHuman::b:p::p}}, space :p:18:p, par t {par b {comp lblScript::b:p::p, comp script::b:p::p}, par b {comp lblStatus::b:p::p, comp status::b:p::p}}, space :::p, par l {seq l {par b {comp account::b:p::p, comp lblAccount::b:p::p}, space :::p, par b {comp lbltimeRunning::b:p::p, comp timeRunning::b:p::p}}, seq l {par l {comp lblUserSpecified1::l:p::p, comp scriptSpecific1::l:p::p}, space :::p, par b {comp scriptSpecific2::b:p::p, comp lblUserSpecified2::b:p::p}}}, space :p:11:p}, seq l {comp btnShutdown:::p::p, space :::p, comp btnSettings:::p::p, space :0:0:x}}"
 		} ) {
 			name: "this"
 			"foreground": new java.awt.Color( 255, 255, 255, 255 )
@@ -108,12 +108,6 @@ new FormModel {
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\settings-24.png" )
 				"toolTipText": "View settings"
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "settingsMouseClicked", false ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "btnLog"
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "E:\\Legerity - Runescape bot\\convin-software-bot-core\\data\\icons\\page-24.png" )
-				"toolTipText": "View log"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "logMouseClicked", false ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblStatus"

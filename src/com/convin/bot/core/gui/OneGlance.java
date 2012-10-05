@@ -31,6 +31,7 @@ public class OneGlance extends JPanel {
         this.mainGui = mainGui;
         setMaximumSize(new Dimension(805, 150));
         initComponents();
+        btnLog.setVisible(false);
     }
 
     private void shutdownMouseClicked() {

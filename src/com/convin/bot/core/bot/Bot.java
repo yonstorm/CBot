@@ -1,6 +1,6 @@
 package com.convin.bot.core.bot;
 
-import com.convin.bot.core.components.CustomFrame;
+import com.convin.bot.core.components.AppletFrame;
 import com.convin.bot.core.components.ImagePanel;
 import com.convin.bot.core.gui.InstanceSettings;
 import com.convin.bot.core.gui.LogWindow;
@@ -32,16 +32,17 @@ public class Bot {
     private final InstanceSettings instanceSettingsWindow = new InstanceSettings(null);
     private final AppletLoader loader;
     private final GameInterfaceManager gameInterfaces = new GameInterfaceManager();
+    private final AppletFrame gameFrame = new AppletFrame();
 
     public Bot(AppletLoader loader) {
-        LogManager.setupLogger(logWindow.getLogArea());
+        LogManager.setupLogger(gameFrame.getTextAreaLog());
         CURRENT = this;
         this.loader = loader;
         boolean botReady = false;
         accessorMethods = new AccessorMethods(this);
         settingsHandler = new SettingsHandler(accessorMethods);
         inputHandler = new InputHandler();
-        displayHandler = new DisplayHandler(loader.loadApplet(), new ImagePanel(accessorMethods), new CustomFrame(), new CustomFrame(), accessorMethods);
+        displayHandler = new DisplayHandler(gameFrame, loader.loadApplet(), new ImagePanel(accessorMethods), accessorMethods);
         debugHandler = new DebugHandler(accessorMethods);
         openglHandler = new OpenglHandler(accessorMethods);
         randomHandler = new RandomHandler(accessorMethods);
@@ -54,13 +55,8 @@ public class Bot {
 
         // Start wrapper updaters
         openglHandler.start();
+
         botReady = true;
-
-        // To preload native libraries
-        //PositionFinder.findPosition();
-
-        //scriptHandler.loadScript("MiningTest");
-        //displayHandler.showAll();
     }
 
     public DisplayHandler getDisplayHandler() {

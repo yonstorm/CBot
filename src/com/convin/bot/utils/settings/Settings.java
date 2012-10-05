@@ -17,14 +17,18 @@ public class Settings {
     public static final String USER_DIR = getUserDir();
     //public static final String REALDIR = System.getProperty("user.dir");
     //public static final String USER_DIR = REALDIR.substring(0, REALDIR.length() - 5);
+    public static final String APPDATA_FOLDER = System.getenv("APPDATA") + FILE_SEPARATOR;
+    public static final String CACHE_FOLDER = APPDATA_FOLDER + "Convin" + FILE_SEPARATOR;
+
     public static final String SCRIPTS_PATH = USER_DIR + FILE_SEPARATOR + "scripts" + FILE_SEPARATOR;
     public static final String DATA_PATH = USER_DIR + FILE_SEPARATOR + "data" + FILE_SEPARATOR;
     public static final String RANDOMS_PATH = DATA_PATH + FILE_SEPARATOR + "randoms" + FILE_SEPARATOR;
     public static final String DLL_PATH = DATA_PATH + FILE_SEPARATOR + "dlls" + FILE_SEPARATOR;
-    public static final String DL_LOCATION = DATA_PATH + FILE_SEPARATOR + "jars" + FILE_SEPARATOR + "dld.jar"; // The bot downloads .jar file from URL to this folder
+    //public static final String DL_LOCATION = DATA_PATH + FILE_SEPARATOR + "jars" + FILE_SEPARATOR + "dld.jar"; // The bot downloads .jar file from URL to this folder
+    public static final String DL_LOCATION = CACHE_FOLDER + "gamepack.jar"; // The bot downloads .jar file from URL to this folder
     public static final String ICON_PATH = DATA_PATH + FILE_SEPARATOR + "icons" + FILE_SEPARATOR;
-    public static final String AUTH_FILE = DATA_PATH + FILE_SEPARATOR + "auth.ak";
-
+    //public static final String AUTH_FILE = DATA_PATH + FILE_SEPARATOR + "auth.ak";
+    public static final String AUTH_FILE = CACHE_FOLDER + "auth.ak";
     // Initialize the config reader - for fututre use.
     private static final ConfigReader c = new ConfigReader(DATA_PATH + "config.ini");
 

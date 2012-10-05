@@ -2,7 +2,6 @@ package com.convin.bot;
 
 import com.convin.bot.core.CustomEventQueue;
 import com.convin.bot.core.bot.Bot;
-import com.convin.bot.core.components.CustomFrame;
 import com.convin.bot.core.loader.AppletLoader;
 
 import java.awt.*;
@@ -27,9 +26,7 @@ public class BotMain {
 
 
     public static void killProcess() {
-        for (CustomFrame f : bot.getDisplayHandler().getFrames()) {
-            f.dispose();
-        }
+        bot.getDisplayHandler().getFrame().dispose();
         bot.shutdown();
         bot.getDisplayHandler().getApplet().destroy();
         System.exit(0);

@@ -5,6 +5,7 @@ import com.convin.bot.core.auth.ProtectedAuthFile;
 import com.convin.bot.core.auth.authForm;
 import com.convin.bot.core.gui.NewMainGui;
 import com.convin.bot.core.gui.dialogs.DialogBuilder;
+import com.convin.bot.utils.BotCache;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -26,6 +27,9 @@ public class Launcher {
             DialogBuilder.showErrorDialog("Please use the launcher", "Please use the ConvinBot launcher");
             System.exit(1);
         }
+        if (!BotCache.exists()) {
+            BotCache.createCache();
+        }
         if (!ProtectedAuthFile.exists()) {
             CountDownLatch authFileCreateSignal = new CountDownLatch(1);
             new authForm(authFileCreateSignal);
@@ -35,6 +39,7 @@ public class Launcher {
             CountDownLatch loginSignal = new CountDownLatch(1);
             new EnterPasswordForm(loginSignal);
             loginSignal.await();
+            BotCache.downloadMap();
             new NewMainGui();
         }
     }
